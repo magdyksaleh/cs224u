@@ -1,7 +1,9 @@
 import json
+import collections
 
-with open('../data/drop_dataset/drop_dataset_dummy.json') as json_file:  
+with open('../data/drop_dataset/drop_dataset_dev.json') as json_file:  
     data = json.load(json_file)
+    res = []
     for k in data:
       for elem in data[k]['qa_pairs']:
         question = elem['question']
@@ -15,4 +17,6 @@ with open('../data/drop_dataset/drop_dataset_dummy.json') as json_file:
             answer_type = "spans"
             break
           answer_type = 'date'  
-        print(question, answer_type)
+        res.append(answer_type)
+
+print(collections.Counter(res))
